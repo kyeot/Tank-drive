@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.subsystems.TankDriveBase;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,7 +24,7 @@ public class Robot extends TimedRobot {
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
-
+  public static TankDriveBase driveBase = new TankDriveBase();
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
@@ -45,6 +46,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    SmartDashboard.putString("DB/String 0", "Left: " + driveBase.leftMotor.getMotorOutputPercent());
+    SmartDashboard.putString("DB/String 1", "Right: " + driveBase.rightMotor.getMotorOutputPercent());
+    SmartDashboard.putString("DB/String 2", "Left Stick: " + driveBase.leftSpeed);
+    SmartDashboard.putString("DB/String 3", "Right Stick: " + driveBase.rightSpeed);
   }
 
   /**

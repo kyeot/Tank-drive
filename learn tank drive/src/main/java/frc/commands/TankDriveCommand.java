@@ -8,11 +8,13 @@
 package frc.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.OI;
+import frc.robot.Robot;
 
 public class TankDriveCommand extends Command {
   public TankDriveCommand() {
     // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
+    requires(Robot.driveBase);
   }
 
   // Called just before this Command runs the first time
@@ -23,6 +25,22 @@ public class TankDriveCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    double rightSpeed;
+    double leftSpeed;
+
+    if (OI.driveController.getRawAxis(5) > 0.15 || OI.driveController.getRawAxis(5) < -0.15) {
+      rightSpeed = OI.driveController.getRawAxis(5);
+    } else {
+      rightSpeed = 0;
+    }
+    if (OI.driveController.getRawAxis(1) > 0.15 || OI.driveController.getRawAxis(1) < -0.15) {
+      leftSpeed = OI.driveController.getRawAxis(1);
+    } else {
+      leftSpeed = 0;
+    }
+    Robot.driveBase.setRightSpeed(rightSpeed);
+    Robot.driveBase.setLeftSpeed(leftSpeed);
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()

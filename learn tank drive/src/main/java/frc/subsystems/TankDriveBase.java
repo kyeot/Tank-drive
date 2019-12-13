@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Add your docs here.
@@ -18,8 +19,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class TankDriveBase extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  VictorSPX leftMotor;
-  VictorSPX rightMotor;
+  public VictorSPX leftMotor;
+  public VictorSPX rightMotor;
+  public double leftSpeed;
+  public double rightSpeed;
   
 
   public TankDriveBase(){
@@ -29,10 +32,12 @@ public class TankDriveBase extends Subsystem {
 
   public void setLeftSpeed(double speed){
     leftMotor.set(ControlMode.PercentOutput, speed);
+    leftSpeed = speed;
   }
 
   public void setRightSpeed(double speed){
     rightMotor.set(ControlMode.PercentOutput, speed);
+    rightSpeed = speed;
   }
   @Override
   public void initDefaultCommand() {
